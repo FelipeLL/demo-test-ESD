@@ -45,7 +45,7 @@ export const Navbar: React.FC = () => {
 
   return (
     <AppBar position="fixed" sx={{ backgroundColor: "white" }}>
-      <Container maxWidth="xl">
+      <Container maxWidth="lg">
         <Toolbar disableGutters>
           <Typography
             noWrap

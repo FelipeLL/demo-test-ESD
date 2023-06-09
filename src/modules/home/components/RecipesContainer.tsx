@@ -10,6 +10,7 @@ import { RecipeCategory } from "./RecipeCategory";
 import { Recipe } from "./Recipe";
 import { useFetchMeals } from "../hooks/useFetchMeals";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 const recipeCategoryInfo = [
   {
@@ -46,7 +47,10 @@ const recipeCategoryInfo = [
 
 export const RecipesContainer: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState("Pork");
+
+  const navigate = useNavigate();
   const { meals } = useFetchMeals(selectedCategory);
+
   return (
     <Box sx={{ mt: 2 }}>
       <Typography
@@ -79,7 +83,16 @@ export const RecipesContainer: React.FC = () => {
 
       <Grid container spacing={3} sx={{ mt: { xs: 2, md: 5 } }}>
         {meals.map((meal) => (
-          <Grid item xs={12} md={6} lg={4} key={meal.idMeal}>
+          <Grid
+            item
+            xs={12}
+            md={6}
+            lg={4}
+            key={meal.idMeal}
+            onClick={() => {
+              navigate(`/meal/${meal.idMeal}`);
+            }}
+          >
             <Recipe title={meal.strMeal} image={meal.strMealThumb} />
           </Grid>
         ))}

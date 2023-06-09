@@ -7,3 +7,15 @@ export interface MealBackendModel {
   strMeal: string;
   strMealThumb: string;
 }
+
+export interface MealDetailResponseModel {
+  meals: MealDetailBackendModel[];
+}
+
+export interface MealDetailBackendModel {
+  idMeal: string;
+  strMeal: string;
+  strMealThumb: string;
+  strArea: string;
+  strInstructions: string;
+}
