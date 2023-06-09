@@ -94,6 +94,7 @@ export const Navbar: React.FC = () => {
               flexGrow: 1,
               letterSpacing: ".1rem",
               textDecoration: "none",
+              fontSize: "1.3rem",
             }}
             color="primary"
           >

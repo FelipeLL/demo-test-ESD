@@ -3,7 +3,7 @@ import { RecipesContainer } from "./RecipesContainer";
 
 export const HomePage: React.FC = () => {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ mb: { xs: 5, md: 10 } }}>
       <Box sx={{ mt: 12 }}>
         <Box
           component="img"

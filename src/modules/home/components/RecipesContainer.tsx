@@ -8,31 +8,45 @@ import {
 } from "@mui/icons-material";
 import { RecipeCategory } from "./RecipeCategory";
 import { Recipe } from "./Recipe";
+import { useFetchMeals } from "../hooks/useFetchMeals";
+import { useState } from "react";
 
 const recipeCategoryInfo = [
   {
-    label: "Break Fast",
+    id: "1",
+    label: "Lunch",
+    categoryMeal: "Pork",
     icon: <LunchDining />,
   },
   {
-    label: "Lunch",
+    id: "2",
+    label: "Break Fast",
+    categoryMeal: "Breakfast",
     icon: <Restaurant />,
   },
   {
+    id: "3",
     label: "Drinks",
+    categoryMeal: "Starter",
     icon: <Liquor />,
   },
   {
+    id: "4",
     label: "Desserts",
+    categoryMeal: "Dessert",
     icon: <Cake />,
   },
   {
+    id: "5",
     label: "Fastfood",
+    categoryMeal: "Seafood",
     icon: <Fastfood />,
   },
 ];
 
 export const RecipesContainer: React.FC = () => {
+  const [selectedCategory, setSelectedCategory] = useState("Pork");
+  const { meals } = useFetchMeals(selectedCategory);
   return (
     <Box sx={{ mt: 2 }}>
       <Typography
@@ -51,20 +65,24 @@ export const RecipesContainer: React.FC = () => {
         sx={{ mt: 4 }}
       >
         {recipeCategoryInfo.map((category) => (
-          <RecipeCategory label={category.label} icon={category.icon} />
+          <Box sx={{ width: "100%" }} key={category.id}>
+            <RecipeCategory
+              label={category.label}
+              icon={category.icon}
+              categoryMeal={category.categoryMeal}
+              selectedCategory={selectedCategory}
+              setSelectedCategory={setSelectedCategory}
+            />
+          </Box>
         ))}
       </Stack>
 
-      <Grid container spacing={3} sx={{ mt: 5 }}>
-        <Grid item xs={12} md={6} lg={4}>
-          <Recipe />
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <Recipe />
-        </Grid>
-        <Grid item xs={12} md={6} lg={4}>
-          <Recipe />
-        </Grid>
+      <Grid container spacing={3} sx={{ mt: { xs: 2, md: 5 } }}>
+        {meals.map((meal) => (
+          <Grid item xs={12} md={6} lg={4} key={meal.idMeal}>
+            <Recipe title={meal.strMeal} image={meal.strMealThumb} />
+          </Grid>
+        ))}
       </Grid>
     </Box>
   );

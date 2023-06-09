@@ -6,7 +6,6 @@ import {
   Typography,
   CardActionArea,
   Box,
-  IconButton,
   Rating,
   Stack,
 } from "@mui/material";
@@ -16,16 +15,11 @@ interface Props {
   image: string;
 }
 
-export const Recipe: React.FC = () => {
+export const Recipe: React.FC<Props> = ({ title, image }) => {
   return (
-    <Card sx={{ width: "100%" }}>
+    <Card sx={{ width: "100%", borderRadius: "20px" }}>
       <CardActionArea>
-        <CardMedia
-          component="img"
-          height="140"
-          image="/static/images/cards/contemplative-reptile.jpg"
-          alt="green iguana"
-        />
+        <CardMedia component="img" height="170" image={image} alt="img" />
         <CardContent>
           <Box
             sx={{
@@ -43,11 +37,9 @@ export const Recipe: React.FC = () => {
                 fontWeight: 500,
               }}
             >
-              Lizard
+              {title}
             </Typography>
-            <IconButton aria-label="add to favorites">
-              <Favorite color="error" />
-            </IconButton>
+            <Favorite color="error" />
           </Box>
           <Box sx={{ display: "flex", gap: 2 }}>
             <Rating
