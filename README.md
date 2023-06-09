@@ -6,7 +6,7 @@ CONTENIDO DE ESTE ARCHIVO
  * Introducción
  * Instalación
  * Iniciar el proyecto
- * Producción URL (ingresar a la aplicación)
+ * Deploy URL (ingresar a la web app)
 
 
 
@@ -42,5 +42,5 @@ INICIAR PROYECTO
  DEPLOY URL
 ----------------
 
-**URL :** https://
+**URL :** https://kuks-fresh-demo.netlify.app/
 
