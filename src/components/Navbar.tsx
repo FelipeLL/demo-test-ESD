@@ -10,20 +10,37 @@ import Container from "@mui/material/Container";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 import MenuItem from "@mui/material/MenuItem";
+import { useNavigate } from "react-router-dom";
 
-const pages = ["Home", "Nosotros", "Videos"];
+const pages = [
+  {
+    name: "Home",
+    path: "/",
+  },
+  {
+    name: "Nosotros",
+    path: "/aboutus",
+  },
+  {
+    name: "Videos",
+    path: "/videos",
+  },
+];
 
 export const Navbar: React.FC = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
 
+  const navigate = useNavigate();
+
   const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElNav(event.currentTarget);
   };
 
-  const handleCloseNavMenu = () => {
+  const handleCloseNavMenu = (path: string) => {
     setAnchorElNav(null);
+    navigate(path);
   };
 
   return (
@@ -77,8 +94,11 @@ export const Navbar: React.FC = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+                <MenuItem
+                  key={page.name}
+                  onClick={() => handleCloseNavMenu(page.path)}
+                >
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -109,12 +129,12 @@ export const Navbar: React.FC = () => {
           >
             {pages.map((page) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={page.name}
+                onClick={() => handleCloseNavMenu(page.path)}
                 sx={{ my: 2, color: "black", display: "block" }}
                 color="primary"
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>
