@@ -8,6 +8,9 @@ const theme = createTheme({
     primary: {
       main: "#ef4c00",
     },
+    secondary: {
+      main: "#B81942",
+    },
   },
   typography: {
     fontFamily: "Poppins, sans-serif",
